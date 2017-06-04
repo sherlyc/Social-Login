@@ -18,3 +18,36 @@ test('Find By Id - given 2 returns baboon', function (t) {
       t.is(expected, actual)
     })
 })
+
+test('Find a user by email', function (t) {
+  var expected = 'Dilapidated Duck'
+  return db.findByEmail('duck@example.org',t.context.connection)
+    .then(function (result){
+      var actual = result[0].name
+      t.is(expected, actual)
+    })
+})
+
+
+test('Find user by facebook id', function (t){
+  var expected = 'Curious Capybara'
+  return db.findByFaceBookID('capybara',t.context.connection)
+    .then(function (result){
+      var actual = result[0].name
+
+    })
+})
+
+test('Add user working correctly', function (t) {
+  var expected = 'James'
+  let data = { name: 'James', email: 'james@email.com'}
+  return db.addUser(data, t.context.connection)
+    .then(function (result) {
+        const id = result[0]
+        return db.findById(id, t.context.connection)
+          .then(function (result) {
+              var actual = result[0].name
+              t.is(expected, actual)
+          })
+    })
+})
