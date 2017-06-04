@@ -26,13 +26,13 @@ if (require.main === module) {
 
 ## User and Database Methods
 
-- [ ] My app has the concept of a `user`
-- [ ] I have a migration for a `users` table that includes the following columns or similar:
-  - [ ] `id`
-  - [ ] `name`
-  - [ ] `email`
-  - [ ] social media account id e.g. `twitterId`
-  - [ ] `hashedPassword`
+- [ x] My app has the concept of a `user`
+- [ x] I have a migration for a `users` table that includes the following columns or similar:
+  - [x ] `id`
+  - [x] `name`
+  - [x] `email`
+  - [x] social media account id e.g. `twitterId`
+  - [x] `hashedPassword`
 - [ ] I have written tests for methods that:
   - [ ] finds users by their primary id e.g. `find()` or `findById()`
   - [ ] finds users by their email e.g. `findByEmail()`
