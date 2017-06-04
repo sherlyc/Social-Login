@@ -33,10 +33,10 @@ if (require.main === module) {
   - [x] `email`
   - [x] social media account id e.g. `twitterId`
   - [x] `hashedPassword`
-- [ ] I have written tests for methods that:
-  - [ ] finds users by their primary id e.g. `find()` or `findById()`
-  - [ ] finds users by their email e.g. `findByEmail()`
-  - [ ] finds users based on their social media identifier e.g. `findByFacebookId()`
+- [x] I have written tests for methods that:
+  - [x] finds users by their primary id e.g. `find()` or `findById()`
+  - [x] finds users by their email e.g. `findByEmail()`
+  - [x] finds users based on their social media identifier e.g. `findByFacebookId()`
   - [ ] create a user in your `users` table e.g. `createUser()`
     - [ ] user creation tests that unique emails are enforced - _i.e. if an account with the same email is created `createUser` responds with an `Error` informing that we will use to inform the user that an account with this email already exists._
   - [ ] ensure passwords are hashed correctly, and you have all the helper methods needed e.g. `hashPassword()` and `comparePassword()` helper functions using [bcryptjs](https://www.npmjs.com/package/bcryptjs) or [bcrypt](https://www.npmjs.com/package/bcrypt) or similar.
