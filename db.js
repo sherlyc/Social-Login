@@ -1,13 +1,8 @@
 
 module.exports = {
-  getUser: getUser,
-  getUsers: getUsers
+  findById
 }
 
-function getUsers (connection) {
-  return connection('users').select()
-}
-
-function getUser (id, connection) {
-  return connection('users').where('id', id)
+function findById (id, connection) {
+  return connection("users").where('id' , id)
 }
