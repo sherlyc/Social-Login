@@ -48,15 +48,15 @@ if (require.main === module) {
 
 Note, you can call your routes whatever you like, so long as they're not going to be ambiguous for future developers / future you.
 
-- [ ] I have set up a series of **incomplete** routes. These minimally include:
-  - [ ] **View Routes:** to a view or views that will contain my login buttons or anchors and forms:
+- [x] I have set up a series of **incomplete** routes. These minimally include:
+  - [x] **View Routes:** to a view or views that will contain my login buttons or anchors and forms:
     * GET `/` (login forms on the main page) AND/OR
     * GET `/login` (this may be the same as `/auth/facebook` in some apps)
-  - [ ] a POST `/signup` for registering user accounts with user details
-  - [ ] a POST `/login` for logging in
-  - [ ] a GET `/logout` for logging out
-  - [ ] a GET `/auth/facebook` for initiating the social login
-  - [ ] a GET `/auth/facebook/callback` for recieving the details back from the provider
+  - [x] a POST `/signup` for registering user accounts with user details
+  - [x] a POST `/login` for logging in
+  - [x] a GET `/logout` for logging out
+  - [x] a GET `/auth/facebook` for initiating the social login
+  - [x] a GET `/auth/facebook/callback` for recieving the details back from the provider
 
 In addition these may include (recommended):
   - [ ] private RESTful routes only available to authenticated users e.g. GET `/transactions`
