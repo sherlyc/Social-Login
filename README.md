@@ -59,8 +59,8 @@ Note, you can call your routes whatever you like, so long as they're not going t
   - [x] a GET `/auth/facebook/callback` for recieving the details back from the provider
 
 In addition these may include (recommended):
-  - [ ] private RESTful routes only available to authenticated users e.g. GET `/transactions`
-  - [ ] a private route only available to a specific authenticated user e.g. GET `/users/:id/profile/edit`
+  - [x ] private RESTful routes only available to authenticated users e.g. GET `/transactions`
+  - [x ] a private route only available to a specific authenticated user e.g. GET `/users/:id/profile/edit`
 
 In addition:
 - [ ] I have mapped a diagram of success and failure redirect flows between relevant routes e.g. (not limited to):
