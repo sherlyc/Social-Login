@@ -14,7 +14,7 @@ function hashPassword (pwd) {
 
 function comparePassword (pwd, hash) {
 
-  bcrypt.compareSync(pwd, hash)
+  return bcrypt.compareSync(pwd, hash)
 
 
 }

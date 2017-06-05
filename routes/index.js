@@ -1,5 +1,12 @@
 var express = require('express')
 var router = express.Router()
+var passport = require('passport')
+
+function specialLogger (req, res, next) {
+  console.log('you hit sign up')
+  next()
+}
+
 
 var db = require('../db')
 
@@ -11,7 +18,11 @@ router.get('/login', function (req, res) {
   res.render('login')
 })
 
-router.post('/login', function (req,res) {
+router.post('/login',
+  specialLogger,
+  passport.authenticate('local', { failureRedirect: '/login'}),
+
+function (req,res) {
   res.send('loggin in')
 })
 
@@ -20,7 +31,11 @@ router.get('/signup', function (req,res) {
 })
 
 
-router.post('/signup', function (req,res) {
+router.post('/signup',
+passport.authenticate('local', { failureRedirect: '/login'}),
+
+function (req,res) {
+
   res.send('signup')
 })
 
