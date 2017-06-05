@@ -39,7 +39,7 @@ if (require.main === module) {
   - [x] finds users based on their social media identifier e.g. `findByFacebookId()`
   - [ x] create a user in your `users` table e.g. `createUser()`
     - [x ] user creation tests that unique emails are enforced - _i.e. if an account with the same email is created `createUser` responds with an `Error` informing that we will use to inform the user that an account with this email already exists._
-  - [ ] ensure passwords are hashed correctly, and you have all the helper methods needed e.g. `hashPassword()` and `comparePassword()` helper functions using [bcryptjs](https://www.npmjs.com/package/bcryptjs) or [bcrypt](https://www.npmjs.com/package/bcrypt) or similar.
+  - [x ] ensure passwords are hashed correctly, and you have all the helper methods needed e.g. `hashPassword()` and `comparePassword()` helper functions using [bcryptjs](https://www.npmjs.com/package/bcryptjs) or [bcrypt](https://www.npmjs.com/package/bcrypt) or similar.
   - **OR** _IF I am using an ORM, I have written analogous user model tests for the above_
 - [ ] My tests all pass.
 
