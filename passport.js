@@ -5,6 +5,8 @@ var func = require('./functions')
 
 module.exports = function (app) {
   var connection = app.get("connection")
+  app.use(require('cookie-parser')());
+  app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
   app.use(passport.initialize())
   app.use(passport.session())
 
@@ -29,12 +31,15 @@ module.exports = function (app) {
   ) //passport.use
 
   passport.serializeUser(function(user, done) {
+    console.log('seriialize');
     done(null, user.id);
   })
 
   passport.deserializeUser(function(id, done) {
-    db.findById(id)
+    console.log('deserialize');
+    db.findById(id, connection)
       .then(function(user) {
+        console.log("deserialized user", {user});
         done(null, user)
       })
       .catch(done)

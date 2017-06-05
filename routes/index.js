@@ -9,8 +9,13 @@ function specialLogger (req, res, next) {
   next()
 }
 
-
-var db = require('../db')
+function ensureAuthenticated (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
 router.get('/', function (req,res){
   res.render('index')
@@ -47,7 +52,7 @@ router.get('/logout', function (req,res) {
   res.render('logout')
 })
 
-router.get('/resource', function (req, res) {
+router.get('/resource', ensureAuthenticated, function (req, res) {
   res.render('resource')
 })
 
@@ -59,7 +64,8 @@ router.get('/auth/facebook/callback', function (req,res) {
   res.send('callback from facebook')
 })
 
-router.get('/transactions', function (req, res) {
+router.get('/transactions', ensureAuthenticated, function (req, res) {
+  console.log(req.user);
   res.render('transactions')
 })
 
