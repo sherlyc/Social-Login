@@ -48,16 +48,26 @@ test('Add user without email check', function (t) {
           .then(function (result) {
               var actual = result.name
               t.is(expected, actual)
-          })
+        })
     })
 })
 
-test('Add user with existing email', function (t) {
+test('Create user with existing email throw an error', async function (t) {
   var expected = 'err'
   let data = { name: 'John', email: 'duck@example.org'}
-  return db.createUser(data, t.context.connection)
-    .then(function (result) {
-              var actual = result
-              t.is(expected, actual)
-          })
-  })
+  await t.throws(db.addUser(data, t.context.connection))
+})
+
+// test('Create user with existing email', function (t) {
+//   var expected = 'err'
+//   let data = { name: 'John', email: 'duck@example.org'}
+//   return db.addUser(data, t.context.connection)
+//     .then(function (result) {
+//             // console.log(typeof (result));
+//             //   var actual = result
+//             //   t.is(expected, actual)
+//     }).catch(err => {
+//        console.log(err)
+//        t.pass()
+//     })
+// })
