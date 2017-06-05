@@ -7,10 +7,10 @@ The following checklist walks you through a best-practice for an app with local 
 
 ## Server
 
-- [ x] I have written a JavaScript file that instantiates a server
-  - [x ] The file exports the server - allowing me to require and test it.
-  - [ x] The server is NOT automatically started when required into another file. i.e. Does NOT have `.listen()` in it.
-- [x ] I have setup a the [template-engine](http://expressjs.com/en/guide/using-template-engines.html) OR similar
+- [x] I have written a JavaScript file that instantiates a server
+  - [x] The file exports the server - allowing me to require and test it.
+  - [x] The server is NOT automatically started when required into another file. i.e. Does NOT have `.listen()` in it.
+- [x] I have setup a the [template-engine](http://expressjs.com/en/guide/using-template-engines.html) OR similar
 
 HINT - you can use the following to have the server file only run `.listen()` if it has not been required:
 
@@ -26,8 +26,8 @@ if (require.main === module) {
 
 ## User and Database Methods
 
-- [ x] My app has the concept of a `user`
-- [ x] I have a migration for a `users` table that includes the following columns or similar:
+- [x] My app has the concept of a `user`
+- [x] I have a migration for a `users` table that includes the following columns or similar:
   - [x ] `id`
   - [x] `name`
   - [x] `email`
@@ -37,11 +37,11 @@ if (require.main === module) {
   - [x] finds users by their primary id e.g. `find()` or `findById()`
   - [x] finds users by their email e.g. `findByEmail()`
   - [x] finds users based on their social media identifier e.g. `findByFacebookId()`
-  - [ x] create a user in your `users` table e.g. `createUser()`
+  - [x] create a user in your `users` table e.g. `createUser()`
     - [x ] user creation tests that unique emails are enforced - _i.e. if an account with the same email is created `createUser` responds with an `Error` informing that we will use to inform the user that an account with this email already exists._
-  - [x ] ensure passwords are hashed correctly, and you have all the helper methods needed e.g. `hashPassword()` and `comparePassword()` helper functions using [bcryptjs](https://www.npmjs.com/package/bcryptjs) or [bcrypt](https://www.npmjs.com/package/bcrypt) or similar.
+  - [x] ensure passwords are hashed correctly, and you have all the helper methods needed e.g. `hashPassword()` and `comparePassword()` helper functions using [bcryptjs](https://www.npmjs.com/package/bcryptjs) or [bcrypt](https://www.npmjs.com/package/bcrypt) or similar.
   - **OR** _IF I am using an ORM, I have written analogous user model tests for the above_
-- [x ] My tests all pass.
+- [x] My tests all pass.
 
 
 ## Routing, Authentication and Authorisation Logic
@@ -59,8 +59,8 @@ Note, you can call your routes whatever you like, so long as they're not going t
   - [x] a GET `/auth/facebook/callback` for recieving the details back from the provider
 
 In addition these may include (recommended):
-  - [x ] private RESTful routes only available to authenticated users e.g. GET `/transactions`
-  - [x ] a private route only available to a specific authenticated user e.g. GET `/users/:id/profile/edit`
+  - [x] private RESTful routes only available to authenticated users e.g. GET `/transactions`
+  - [x] a private route only available to a specific authenticated user e.g. GET `/users/:id/profile/edit`
 
 In addition:
 - [ ] I have mapped a diagram of success and failure redirect flows between relevant routes e.g. (not limited to):
@@ -76,7 +76,7 @@ I.e when the user attempts to navigate to `/` if they are authenticated redirect
 
 ## Views
 
-- [x ] I have created a views folder that contains the **incomplete views** specified in **view routes** above.
+- [x] I have created a views folder that contains the **incomplete views** specified in **view routes** above.
 
 
 ## Tests
@@ -90,15 +90,15 @@ I.e when the user attempts to navigate to `/` if they are authenticated redirect
 
 ## Passport and Session Setup
 
-- [ x] I have installed Passport related modules :
-  - [x ] [passport](https://www.npmjs.com/package/passport),
-  - [x ] [passport-local](https://www.npmjs.com/package/passport-local),
-  - [x ] the social login [strategy](http://passportjs.org/), e.g. [passport-facebook](https://www.npmjs.com/package/passport-facebook)
+- [x] I have installed Passport related modules :
+  - [x] [passport](https://www.npmjs.com/package/passport),
+  - [x] [passport-local](https://www.npmjs.com/package/passport-local),
+  - [x] the social login [strategy](http://passportjs.org/), e.g. [passport-facebook](https://www.npmjs.com/package/passport-facebook)
 
-- [x ] I have installed [express-session](https://www.npmjs.com/package/express-session), [body-parser](https://www.npmjs.com/package/body-parser)
-- [x ] I have checked my modules are installed and are now listed in my `package.json`
-- [x ] I have required the above modules into my server file
-- [x ] I have added the `express-session` and `body-parser` [middleware setup](https://github.com/jaredhanson/passport#middleware) to the top of my server file underneath my module requires
+- [x] I have installed [express-session](https://www.npmjs.com/package/express-session), [body-parser](https://www.npmjs.com/package/body-parser)
+- [x] I have checked my modules are installed and are now listed in my `package.json`
+- [x] I have required the above modules into my server file
+- [x] I have added the `express-session` and `body-parser` [middleware setup](https://github.com/jaredhanson/passport#middleware) to the top of my server file underneath my module requires
 
 
 ## Passport Strategy Setup
@@ -108,10 +108,10 @@ We are now ready to write our passport code and get our autheticated route tests
 Testing social login directly is impossible to do with unit testing.
 We will write our local strategy which we can unit test first, get our **Routing, Authentication and Authorisation Logic** tests to pass, then implement a social login on top of this.
 
-- [x ] I have created a `passport.js` file and exported a function that accepts `app` and `passport` as parameters from this file.
-- [x ] I have required my user model OR database connection and functions into this file.
-- [x ] I have required my passport strategies into this file.
-- [x ] I have required my `passport.js` function into my server file and executed it passing in a reference to the initialised `app` and `passport`.
+- [x] I have created a `passport.js` file and exported a function that accepts `app` and `passport` as parameters from this file.
+- [x] I have required my user model OR database connection and functions into this file.
+- [x] I have required my passport strategies into this file.
+- [x] I have required my `passport.js` function into my server file and executed it passing in a reference to the initialised `app` and `passport`.
 
 
 ## Local Strategy
@@ -120,8 +120,8 @@ Now let's set up our local stratgey.
 
 The details of the following checkpoints are unpacked in following subsections.
 
-- [x ] I have configured passport to use [passport-local](https://github.com/jaredhanson/passport-local/) startegy, implementing the following logic and interface with my database's user table and `hashPassword` and `comparePasswords` helper functions created previously:
-- [x ] I have configured passport to serialise and deserialise the unique user id to the `session` using my `find` or `findUserById` functions written previously:
+- [x] I have configured passport to use [passport-local](https://github.com/jaredhanson/passport-local/) startegy, implementing the following logic and interface with my database's user table and `hashPassword` and `comparePasswords` helper functions created previously:
+- [x] I have configured passport to serialise and deserialise the unique user id to the `session` using my `find` or `findUserById` functions written previously:
 - [ ] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/login` `/signup`
 - [ ] 
 - [ ] _(IF I am using routes that are private to particulare users)_ I have implemented this logic using custom middleware functions
