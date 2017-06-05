@@ -76,7 +76,7 @@ I.e when the user attempts to navigate to `/` if they are authenticated redirect
 
 ## Views
 
-- [ ] I have created a views folder that contains the **incomplete views** specified in **view routes** above.
+- [x ] I have created a views folder that contains the **incomplete views** specified in **view routes** above.
 
 
 ## Tests
@@ -90,15 +90,15 @@ I.e when the user attempts to navigate to `/` if they are authenticated redirect
 
 ## Passport and Session Setup
 
-- [ ] I have installed Passport related modules :
-  - [ ] [passport](https://www.npmjs.com/package/passport),
-  - [ ] [passport-local](https://www.npmjs.com/package/passport-local),
-  - [ ] the social login [strategy](http://passportjs.org/), e.g. [passport-facebook](https://www.npmjs.com/package/passport-facebook)
+- [ x] I have installed Passport related modules :
+  - [x ] [passport](https://www.npmjs.com/package/passport),
+  - [x ] [passport-local](https://www.npmjs.com/package/passport-local),
+  - [x ] the social login [strategy](http://passportjs.org/), e.g. [passport-facebook](https://www.npmjs.com/package/passport-facebook)
 
-- [ ] I have installed [express-session](https://www.npmjs.com/package/express-session), [body-parser](https://www.npmjs.com/package/body-parser)
-- [ ] I have checked my modules are installed and are now listed in my `package.json`
-- [ ] I have required the above modules into my server file
-- [ ] I have added the `express-session` and `body-parser` [middleware setup](https://github.com/jaredhanson/passport#middleware) to the top of my server file underneath my module requires
+- [x ] I have installed [express-session](https://www.npmjs.com/package/express-session), [body-parser](https://www.npmjs.com/package/body-parser)
+- [x ] I have checked my modules are installed and are now listed in my `package.json`
+- [x ] I have required the above modules into my server file
+- [x ] I have added the `express-session` and `body-parser` [middleware setup](https://github.com/jaredhanson/passport#middleware) to the top of my server file underneath my module requires
 
 
 ## Passport Strategy Setup
@@ -108,10 +108,10 @@ We are now ready to write our passport code and get our autheticated route tests
 Testing social login directly is impossible to do with unit testing.
 We will write our local strategy which we can unit test first, get our **Routing, Authentication and Authorisation Logic** tests to pass, then implement a social login on top of this.
 
-- [ ] I have created a `passport.js` file and exported a function that accepts `app` and `passport` as parameters from this file.
-- [ ] I have required my user model OR database connection and functions into this file.
-- [ ] I have required my passport strategies into this file.
-- [ ] I have required my `passport.js` function into my server file and executed it passing in a reference to the initialised `app` and `passport`.
+- [x ] I have created a `passport.js` file and exported a function that accepts `app` and `passport` as parameters from this file.
+- [x ] I have required my user model OR database connection and functions into this file.
+- [x ] I have required my passport strategies into this file.
+- [x ] I have required my `passport.js` function into my server file and executed it passing in a reference to the initialised `app` and `passport`.
 
 
 ## Local Strategy
@@ -120,8 +120,8 @@ Now let's set up our local stratgey.
 
 The details of the following checkpoints are unpacked in following subsections.
 
-- [ ] I have configured passport to use [passport-local](https://github.com/jaredhanson/passport-local/) startegy, implementing the following logic and interface with my database's user table and `hashPassword` and `comparePasswords` helper functions created previously:
-- [ ] I have configured passport to serialise and deserialise the unique user id to the `session` using my `find` or `findUserById` functions written previously:
+- [x ] I have configured passport to use [passport-local](https://github.com/jaredhanson/passport-local/) startegy, implementing the following logic and interface with my database's user table and `hashPassword` and `comparePasswords` helper functions created previously:
+- [x ] I have configured passport to serialise and deserialise the unique user id to the `session` using my `find` or `findUserById` functions written previously:
 - [ ] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/login` `/signup`
 - [ ] 
 - [ ] _(IF I am using routes that are private to particulare users)_ I have implemented this logic using custom middleware functions
