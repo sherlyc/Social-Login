@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
     table.string('name')
     table.string('email').unique()
     table.string('facebookId')
-    table.binary('hashpassword')
+    table.binary('password')
   })
 }
 

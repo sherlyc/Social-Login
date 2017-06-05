@@ -1,7 +1,7 @@
 var passport = require('passport')
 var Strategy = require('passport-local').Strategy
 var db = require('./db')
-var func = require('./functions')
+var bcrypt = require('./bcrypt')
 
 module.exports = function (app) {
   var connection = app.get("connection")
@@ -16,10 +16,10 @@ module.exports = function (app) {
       db.findByEmail(email, connection)
        .then (function(user) {
         if (!user) {
-          return cb(null, false, {message: 'User is not found'});
+          return done(null, false, {message: 'User is not found'});
         }
         // bcrypt compare
-        if (!func.comparePassword(password, user.password)) {
+        if (!bcrypt.comparePassword(password, user.password)) {
           return done(null, false, {message: 'Incorrect Password'});
         }
         // passswords match

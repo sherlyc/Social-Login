@@ -8,7 +8,6 @@ var configureDatabase = require('./helpers/database-config')
 configureDatabase(test)
 
 var db = require('../db')
-var func = require('../functions')
 
 
 test('Find By Id - given 2 returns baboon', function (t) {
@@ -58,32 +57,3 @@ test('Create user with existing email throw an error', async function (t) {
   let data = { name: 'John', email: 'duck@example.org'}
   await t.throws(db.addUser(data, t.context.connection))
 })
-
-// test.only('Hash Password', function (t) {
-//   t.plan(1)
-//   const expected = '$2a$10$RExOodn3eifZ9lsnuNubHOX7eqFnbwQ0FBwosykqM0VFS6aN4Cpum'
-//
-//   const hash=func.hashPassword('applepie')
-//   console.log(hash);
-//   t.is(expected, hash)
-// })
-//
-// test('Compare Password', function (t) {
-//   const match = func.comparePassword('applepie')
-//   t.pass()
-// })
-
-
-// test('Create user with existing email', function (t) {
-//   var expected = 'err'
-//   let data = { name: 'John', email: 'duck@example.org'}
-//   return db.addUser(data, t.context.connection)
-//     .then(function (result) {
-//             // console.log(typeof (result));
-//             //   var actual = result
-//             //   t.is(expected, actual)
-//     }).catch(err => {
-//        console.log(err)
-//        t.pass()
-//     })
-// })

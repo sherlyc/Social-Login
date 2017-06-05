@@ -1,6 +1,9 @@
 var express = require('express')
 var router = express.Router()
+var bcrypt = require('bcryptjs')
 var passport = require('passport')
+var db = require('../db')
+
 
 function specialLogger (req, res, next) {
   console.log('you hit sign up')
@@ -18,25 +21,26 @@ router.get('/login', function (req, res) {
   res.render('login')
 })
 
-router.post('/login',
-  specialLogger,
-  passport.authenticate('local', { failureRedirect: '/login'}),
+router.post('/login', passport.authenticate('local', { successRedirect: '/resource',
+                                                    failureRedirect: '/login' }))
 
-function (req,res) {
-  res.send('loggin in')
-})
 
 router.get('/signup', function (req,res) {
   res.render('signup')
 })
 
 
-router.post('/signup',
-passport.authenticate('local', { failureRedirect: '/login'}),
+router.post('/signup', function (req,res) {
+  req.body.password = bcrypt.hashSync(req.body.password, 10)
+  db.addUser(req.body, req.app.get('connection'))
 
-function (req,res) {
+    .then(function (result) {
+        res.send('success')
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
 
-  res.send('signup')
 })
 
 
