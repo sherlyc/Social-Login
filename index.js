@@ -9,7 +9,7 @@ var server = createServer(connection)
 var PORT = process.env.PORT || 3000
 
 if (require.main === module) {
-  server.listen(port, function () {
-    console.log(`server listening on ${port}`)
+  server.listen(PORT, function () {
+    console.log(`server listening on ${PORT}`)
   })
 }
