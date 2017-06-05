@@ -1,6 +1,8 @@
 var express = require('express')
 var router = express.Router()
 var passport = require('passport')
+var func = require('../functions')
+var db = require('../db')
 
 function specialLogger (req, res, next) {
   console.log('you hit sign up')
@@ -19,24 +21,25 @@ router.get('/login', function (req, res) {
 })
 
 router.post('/login',
-  specialLogger,
-  passport.authenticate('local', { failureRedirect: '/login'}),
+  passport.authenticate('local', { successRedirect: '/resource', failureRedirect: '/login'}))
 
-function (req,res) {
-  res.send('loggin in')
-})
 
 router.get('/signup', function (req,res) {
   res.render('signup')
 })
 
 
-router.post('/signup',
-passport.authenticate('local', { failureRedirect: '/login'}),
+router.post('/signup',function (req,res) {
 
-function (req,res) {
-
-  res.send('signup')
+  req.body.password = func.hashPassword(req.body.password)
+  console.log(req.body)
+  db.addUser(req.body, req.app.get('connection'))
+  .then(function (result) {
+        res.send('success')
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
 })
 
 

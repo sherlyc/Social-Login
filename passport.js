@@ -16,7 +16,7 @@ module.exports = function (app) {
       db.findByEmail(email, connection)
        .then (function(user) {
         if (!user) {
-          return cb(null, false, {message: 'User is not found'});
+          return done(null, false, {message: 'User is not found'});
         }
         // bcrypt compare
         if (!func.comparePassword(password, user.password)) {
