@@ -45,9 +45,8 @@ router.get('/signup', function (req,res) {
 
 
 router.post('/signup',function (req,res) {
-
+ console.log(req.body)
   req.body.password = func.hashPassword(req.body.password)
-  console.log(req.body)
   db.addUser(req.body, req.app.get('connection'))
   .then(function (result) {
         res.send('success')
