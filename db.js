@@ -1,13 +1,35 @@
 
 module.exports = {
-  getUser: getUser,
-  getUsers: getUsers
+  findById,
+  findByEmail,
+  findByFaceBookID,
+  addUser,
+  createUser
 }
 
-function getUsers (connection) {
-  return connection('users').select()
+function findById (id, connection) {
+  return connection("users").where('id' , id).first()
 }
 
-function getUser (id, connection) {
-  return connection('users').where('id', id)
+function findByEmail (email, connection) {
+  return connection('users').where('email', email).first()
+}
+
+function findByFaceBookID(facebookId, connection) {
+  return connection('users').where('facebookId', facebookId).first()
+}
+
+function addUser(data, connection) {
+  return connection('users').insert(data)
+}
+
+function createUser(data, connection) {
+  return findByEmail(data.email, connection)
+    .then (function(result){
+       if (result.email == data.email) {
+         return 'err'
+       } else {
+         return addUser(data, connection)
+       }
+    })
 }

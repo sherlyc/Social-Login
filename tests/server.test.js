@@ -7,13 +7,13 @@ var createServer = require('../server')
 var configureDatabase = require('./helpers/database-config')
 configureDatabase(test, createServer)
 
-test('GET /', (t) => {
+test('GET /logout', (t) => {
   return request(t.context.app)
-    .get('/')
+    .get('/logout')
     .expect(200)
     .then((res) => {
       const $ = cheerio.load(res.text)
-      t.is($('li').first().text(), 'Ambitious Aardvark (aardvark@example.org)')
+      t.is($('h1').first().text(), 'Bye and be gone!')
     })
 
 })
