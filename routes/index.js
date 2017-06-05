@@ -17,6 +17,16 @@ function ensureAuthenticated (req, res, next) {
   }
 }
 
+function isAuthorisedUser (req, res, next) {
+  if (!req.user){
+  res.redirect('/login')
+  } else if (req.user.id == req.params.id ) {
+    return next()
+  } else {
+    res.redirect('/not-authorised')
+  }
+}
+
 router.get('/', function (req,res){
   res.render('index')
 })
@@ -56,6 +66,10 @@ router.get('/resource', ensureAuthenticated, function (req, res) {
   res.render('resource')
 })
 
+router.get('/not-authorised', function (req,res) {
+  res.send('not authorised')
+})
+
 router.get('/auth/facebook', function (req,res) {
   res.send('social login')
 })
@@ -69,8 +83,8 @@ router.get('/transactions', ensureAuthenticated, function (req, res) {
   res.render('transactions')
 })
 
-router.get('/users/:id/profile/edit', function (req, res) {
-  res.send('authenticated user can only view this edit page')
+router.get('/users/:id/profile/edit', isAuthorisedUser, function (req, res) {
+  res.send('welcome user')
 })
 
 
