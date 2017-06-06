@@ -12,6 +12,7 @@ put the following lines in your .env file.
 
 
 FACEBOOK_APP_ID=YOURAPPID
+
 FACEBOOK_APP_SECRET=YOURSECRET
 
 npm run knex migrate:latest
