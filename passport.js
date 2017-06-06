@@ -49,7 +49,6 @@ module.exports = function(app) {
     },
 
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile)
             db.findByFaceBookID(profile.id, connection)
             .then(function(user){
                 if(user) {
@@ -59,7 +58,6 @@ module.exports = function(app) {
                     db.addUser(newUser, connection)
                     .then(function(res){
                         newUser.id = res[0]
-                        console.log(newUser)
                         user = newUser
                         return done(null, user);
 
