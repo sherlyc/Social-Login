@@ -32,7 +32,7 @@ router.get('/', function (req,res){
 })
 
 router.get('/login', function (req, res) {
-  res.render('login', {messages: req.flash('error')})
+  res.render('login', {message: req.flash('error')})
 })
 
 router.post('/login',
@@ -40,22 +40,21 @@ router.post('/login',
 
 
 router.get('/signup', function (req,res) {
-  res.render('signup')
+  res.render('signup', {message: req.flash('error')})
 })
 
 
 router.post('/signup',function (req,res) {
-  console.log(req.body)
   req.body.password = func.hashPassword(req.body.password)
   db.addUser(req.body, req.app.get('connection'))
   .then(function (result) {
         res.status(200).send('success')
     })
     .catch(function (err) {
-      res.status(500).send('DATABASE ERROR: ' + err.message)
+        req.flash('error', 'email is not unique')
+        res.redirect(302, 'signup')
     })
 })
-
 
 router.get('/logout', function (req,res) {
   req.logout();
@@ -63,7 +62,6 @@ router.get('/logout', function (req,res) {
 })
 
 router.get('/resource', ensureAuthenticated, function (req, res) {
-    console.log(req.user)
     res.render('resource', {user: req.user})
 })
 
@@ -80,7 +78,6 @@ router.get('/auth/facebook/callback', function (req,res) {
 })
 
 router.get('/transactions', ensureAuthenticated, function (req, res) {
-  console.log(req.user);
   res.render('transactions')
 })
 
