@@ -15,6 +15,8 @@ FACEBOOK_APP_ID=YOURAPPID
 
 FACEBOOK_APP_SECRET=YOURSECRET
 
+Grab your keys by following this guide: https://developers.facebook.com/docs/apps/register
+
 npm run knex migrate:latest
 
 npm run knex seed:run
