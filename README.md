@@ -1,16 +1,23 @@
 # Installation
 
 git clone https://github.com/sherlyc/Social-Login.git
+
 npm i
+
 cd Social-Login
+
 touch .env
+
 put the following lines in your .env file.
+
 
 FACEBOOK_APP_ID=YOURAPPID
 FACEBOOK_APP_SECRET=YOURSECRET
 
 npm run knex migrate:latest
+
 npm run knex seed:run
+
 npm run dev
 
 # Social Login Checklist
