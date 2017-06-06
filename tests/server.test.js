@@ -17,3 +17,13 @@ test('GET /logout', (t) => {
     })
 
 })
+
+test('signup:Success', (t) => {
+	return request(t.context.app)
+		.post('/signup')
+		.send({email: 'ava@rocks.com', password: '123123'})
+        .expect(200)
+        .then((res) => {
+            t.is(res.status, 200);
+      })
+})

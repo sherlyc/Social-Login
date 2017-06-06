@@ -1,5 +1,6 @@
 <h1>Login</h1>
-
+<div class="error">{{message}}</div>
+<div>
 <form action="/login" method="post">
 <label for=email>Email</label>
 <input type="email" name="email" placeholder="email"/>
@@ -7,3 +8,5 @@
 <input type="password" name="password" placeholder="password"/>
 <input type="submit" value="Login"/>
 </form>
+</div>
+<a href="/signup">Sign Up</a>

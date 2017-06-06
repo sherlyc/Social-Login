@@ -6,19 +6,8 @@ var hbs = require('express-handlebars')
 var session = require('express-session')
 var passport = require('./passport')
 var db = require('./db')
-
+var flash = require('connect-flash');
 var index = require('./routes/index')
-
-var app = express()
-var connection = app.get("connection")
-
-// Middleware
-
-app.engine('hbs', hbs({extname: 'hbs'}))
-app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))
-app.use(bodyParser.urlencoded({ extended: true }))
-
 
 
 // Routes
@@ -26,6 +15,19 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 module.exports = (connection) => {
+  var app = express()
+
+  // Middleware
+
+  app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'main'}))
+  app.set('view engine', 'hbs')
+  app.set('views', path.join(__dirname, 'views'))
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.json({ extended: true }))
+  app.use(express.static('public'))
+  app.use(flash());
+
+
   app.set('connection', connection)
   //setup passport
   passport(app)

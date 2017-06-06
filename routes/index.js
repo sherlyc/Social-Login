@@ -9,46 +9,64 @@ function specialLogger (req, res, next) {
   next()
 }
 
+function ensureAuthenticated (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
-var db = require('../db')
+function isAuthorisedUser (req, res, next) {
+  if (!req.user){
+  res.redirect('/login')
+  } else if (req.user.id == req.params.id ) {
+    return next()
+  } else {
+    res.redirect('/not-authorised')
+  }
+}
 
 router.get('/', function (req,res){
   res.render('index')
 })
 
 router.get('/login', function (req, res) {
-  res.render('login')
+  res.render('login', {message: req.flash('error')})
 })
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/resource', failureRedirect: '/login'}))
+  passport.authenticate('local', { successRedirect: '/resource', failureRedirect: '/login', failureFlash: true }))
 
 
 router.get('/signup', function (req,res) {
-  res.render('signup')
+  res.render('signup', {message: req.flash('error')})
 })
 
 
 router.post('/signup',function (req,res) {
-
   req.body.password = func.hashPassword(req.body.password)
-  console.log(req.body)
   db.addUser(req.body, req.app.get('connection'))
   .then(function (result) {
-        res.send('success')
+        res.status(200).send('success')
     })
     .catch(function (err) {
-      res.status(500).send('DATABASE ERROR: ' + err.message)
+        req.flash('error', 'email is not unique')
+        res.redirect(302, 'signup')
     })
 })
 
-
 router.get('/logout', function (req,res) {
+  req.logout();
   res.render('logout')
 })
 
-router.get('/resource', function (req, res) {
-  res.render('resource')
+router.get('/resource', ensureAuthenticated, function (req, res) {
+    res.render('resource', {user: req.user})
+})
+
+router.get('/not-authorised', function (req,res) {
+  res.send('not authorised')
 })
 
 router.get('/auth/facebook', function (req,res) {
@@ -59,12 +77,12 @@ router.get('/auth/facebook/callback', function (req,res) {
   res.send('callback from facebook')
 })
 
-router.get('/transactions', function (req, res) {
+router.get('/transactions', ensureAuthenticated, function (req, res) {
   res.render('transactions')
 })
 
-router.get('/users/:id/profile/edit', function (req, res) {
-  res.send('authenticated user can only view this edit page')
+router.get('/users/:id/profile/edit', isAuthorisedUser, function (req, res) {
+  res.send('welcome user')
 })
 
 
