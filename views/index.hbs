@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EDA Phase 1 Express Boilerplate</title>
+    <title>Passport Workshop</title>
   </head>
   <body>
-    <ul>
-    {{#each users}}
-      <li>{{name}} ({{email}})</li>
-    {{/each}}
-    </ul>
+      <h1>Please login</h1>
+
+      <form action="/login" method="post">
+      <label for=email>Email</label>
+      <input type="email" name="email" placeholder="email"/>
+      <label for=password>Password</label>
+      <input type="password" name="password" placeholder="password"/>
+      <input type="submit" value="Login"/>
+      </form>
+
   </body>
 </html>

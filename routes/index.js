@@ -45,11 +45,11 @@ router.get('/signup', function (req,res) {
 
 
 router.post('/signup',function (req,res) {
-  console.log(req)
+  console.log(req.body)
   req.body.password = func.hashPassword(req.body.password)
   db.addUser(req.body, req.app.get('connection'))
   .then(function (result) {
-        res.status(200)
+        res.status(200).send('success')
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -58,11 +58,13 @@ router.post('/signup',function (req,res) {
 
 
 router.get('/logout', function (req,res) {
+  req.logout();
   res.render('logout')
 })
 
 router.get('/resource', ensureAuthenticated, function (req, res) {
-  res.render('resource')
+    console.log(req.user)
+    res.render('resource', {user: req.user})
 })
 
 router.get('/not-authorised', function (req,res) {
