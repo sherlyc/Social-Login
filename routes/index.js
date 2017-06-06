@@ -4,10 +4,6 @@ var passport = require('passport')
 var func = require('../functions')
 var db = require('../db')
 
-function specialLogger (req, res, next) {
-  console.log('you hit sign up')
-  next()
-}
 
 function ensureAuthenticated (req, res, next) {
   if (req.isAuthenticated()) {
