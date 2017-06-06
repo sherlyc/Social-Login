@@ -7,10 +7,7 @@ var passport = require('./passport')
 var db = require('./db')
 var flash = require('connect-flash');
 var index = require('./routes/index')
-console.log(process.env);
-console.log('###################################')
 require('dotenv').config()
-console.log(process.env);
 
 
 // Routes

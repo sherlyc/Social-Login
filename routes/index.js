@@ -65,13 +65,12 @@ router.get('/not-authorised', function (req,res) {
   res.send('not authorised')
 })
 
-router.get('/auth/facebook', function (req,res) {
-  res.send('social login')
-})
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
 
-router.get('/auth/facebook/callback', function (req,res) {
-  res.send('callback from facebook')
-})
+router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
+            successRedirect : '/resource',
+            failureRedirect : '/'
+}));
 
 router.get('/transactions', ensureAuthenticated, function (req, res) {
   res.render('transactions')
