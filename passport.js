@@ -34,8 +34,7 @@ module.exports = function(app) {
             });
           }
           // passswords match
-          console.log('user ++++')
-          console.log(user)
+    
           return done(null, user)
         })
     })) //passport.use
@@ -49,18 +48,26 @@ module.exports = function(app) {
     },
 
     function(accessToken, refreshToken, profile, done) {
+        console.log(profile)
             db.findByFaceBookID(profile.id, connection)
             .then(function(user){
                 if(user) {
                     return done(null, user)
                 } else {
-                    let newUser = {facebookId: profile.id, name: profile.displayName, email: profile.email, facebookPic: profile.photos[0].value}
+                    let newUser = {facebookId: profile.id, name: profile.displayName, email: profile.emails[0].value, facebookPic: profile.photos[0].value}
                     db.addUser(newUser, connection)
                     .then(function(res){
                         newUser.id = res[0]
                         user = newUser
+                        console.log("after addUser")
+                        console.log(user)
                         return done(null, user);
 
+                    })
+                    .catch(function (err) {
+                        return done(null, false, {
+                          message: 'DB Error'
+                        });
                     })
                 }
             })
