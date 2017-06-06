@@ -18,13 +18,15 @@ test('GET /logout', (t) => {
 
 })
 
-test('signup:Success', async t => {
-	t.plan(2);
+test('signup:Success', (t) => {
 
-	const res = await request(t.context.app)
+	return request(t.context.app)
 		.post('/signup')
-		.send({email: 'ava@rocks.com', password: '123123'});
+		.send({email: 'ava@rocks.com', password: '123123'})
+        .expect(200)
+        .then((res) => {
+            t.is(res.status, 200);
+        	t.is(res.body.email, 'ava@rocks.com');
+        })
 
-	t.is(res.status, 200);
-	t.is(res.body.email, 'ava@rocks.com');
-});
+})

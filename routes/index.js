@@ -45,11 +45,11 @@ router.get('/signup', function (req,res) {
 
 
 router.post('/signup',function (req,res) {
- console.log(req.body)
+  console.log(req)
   req.body.password = func.hashPassword(req.body.password)
   db.addUser(req.body, req.app.get('connection'))
   .then(function (result) {
-        res.send('success')
+        res.status(200)
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
