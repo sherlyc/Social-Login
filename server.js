@@ -1,5 +1,4 @@
 var path = require('path')
-
 var express = require('express')
 var bodyParser = require('body-parser')
 var hbs = require('express-handlebars')
@@ -8,6 +7,10 @@ var passport = require('./passport')
 var db = require('./db')
 var flash = require('connect-flash');
 var index = require('./routes/index')
+console.log(process.env);
+console.log('###################################')
+require('dotenv').config()
+console.log(process.env);
 
 
 // Routes

@@ -30,6 +30,19 @@ module.exports = function (app) {
     })
   ) //passport.use
 
+  passport.use(new FaceBookStrategy({
+     clientID: process.env.FACEBOOK_APP_ID,
+     clientSecret: process.env.FACEBOOK_APP_SECRET,
+     callbackURL:  'http://localhost:3000/auth/facebook/callback'
+    },
+
+    function(accessToken, refreshToken, profile, done) {
+
+
+
+    })
+  ) //passport.use
+
   passport.serializeUser(function(user, done) {
     console.log('seriialize');
     done(null, user.id);
