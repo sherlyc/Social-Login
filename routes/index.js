@@ -32,11 +32,11 @@ router.get('/', function (req,res){
 })
 
 router.get('/login', function (req, res) {
-  res.render('login')
+  res.render('login', {messages: req.flash('error')})
 })
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/resource', failureRedirect: '/login'}))
+  passport.authenticate('local', { successRedirect: '/resource', failureRedirect: '/login', failureFlash: true }))
 
 
 router.get('/signup', function (req,res) {
