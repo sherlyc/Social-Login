@@ -63,7 +63,7 @@ In addition these may include (recommended):
   - [x] a private route only available to a specific authenticated user e.g. GET `/users/:id/profile/edit`
 
 In addition:
-- [ ] I have mapped a diagram of success and failure redirect flows between relevant routes e.g. (not limited to):
+- [x] I have mapped a diagram of success and failure redirect flows between relevant routes e.g. (not limited to):
   * GET `/` is authenticated -> `/resource`
   * GET `/` is not authenticated -> `/login`
 
@@ -122,9 +122,9 @@ The details of the following checkpoints are unpacked in following subsections.
 
 - [x] I have configured passport to use [passport-local](https://github.com/jaredhanson/passport-local/) startegy, implementing the following logic and interface with my database's user table and `hashPassword` and `comparePasswords` helper functions created previously:
 - [x] I have configured passport to serialise and deserialise the unique user id to the `session` using my `find` or `findUserById` functions written previously:
-- [ ] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/login` `/signup`
+- [x] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/login` `/signup`
 - [ ] 
-- [ ] _(IF I am using routes that are private to particulare users)_ I have implemented this logic using custom middleware functions
+- [x] _(IF I am using routes that are private to particulare users)_ I have implemented this logic using custom middleware functions
 - [ ] My authenticated route tests now PASS.
 
 
