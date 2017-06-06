@@ -5,6 +5,7 @@ exports.up = function (knex, Promise) {
     table.string('email').unique()
     table.string('facebookId')
     table.binary('password')
+    table.string('facebookPic')
   })
 }
 

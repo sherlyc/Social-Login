@@ -58,6 +58,8 @@ router.get('/logout', function (req,res) {
 })
 
 router.get('/resource', ensureAuthenticated, function (req, res) {
+    console.log("from router resource")
+    console.log(req.user)
     res.render('resource', {user: req.user})
 })
 
@@ -65,7 +67,7 @@ router.get('/not-authorised', function (req,res) {
   res.send('not authorised')
 })
 
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }))
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}))
 
 router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
             successRedirect : '/resource',

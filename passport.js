@@ -34,6 +34,8 @@ module.exports = function(app) {
             });
           }
           // passswords match
+          console.log('user ++++')
+          console.log(user)
           return done(null, user)
         })
     })) //passport.use
@@ -41,54 +43,39 @@ module.exports = function(app) {
   passport.use(new FacebookStrategy({
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: 'http://localhost:3000/auth/facebook/callback'
+      callbackURL: 'http://localhost:3000/auth/facebook/callback',
+      profileFields: ['id', 'displayName', 'email', 'photos']
+
     },
 
     function(accessToken, refreshToken, profile, done) {
+        console.log(profile)
+            db.findByFaceBookID(profile.id, connection)
+            .then(function(user){
+                if(user) {
+                    return done(null, user)
+                } else {
+                    let newUser = {facebookId: profile.id, name: profile.displayName, email: profile.email, facebookPic: profile.photos[0].value}
+                    db.addUser(newUser, connection)
+                    .then(function(res){
+                        newUser.id = res[0]
+                        console.log(newUser)
+                        user = newUser
+                        return done(null, user);
 
-      console.log(profile)
-      db.findByFaceBookID(profile.id, connection)
-       .then (function(err, user) {
-          if (err) {
-            return done(err)
+                    })
+                }
+            })
 
-          }
-
-          if (user) {
-              return done(null, user); // user found, return that user
-            } else {
-              var newUser = {facebookId : profile.id,
-                             name: profile.displayName}
-
-
-
-
-          }
-        )
-
-
-
-       db.addUser(newUser, connection)
-       .then(function(err, user) {
-          if (err)
-            throw err;
-          return done(null, user);
-        });
-      }
     })) //passport.use
 
   passport.serializeUser(function(user, done) {
-    console.log('seriialize');
     done(null, user.id);
   })
 
   passport.deserializeUser(function(id, done) {
-    console.log('deserialize');
     db.findById(id, connection)
       .then(function(user) {
-        console.log("deserialized user", {
-          user
-        });
         done(null, user)
       })
       .catch(done)
