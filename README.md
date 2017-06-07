@@ -264,21 +264,21 @@ app.get('/users/:id/profile/edit', isAuthorisedUser, function (req, res, next) {
 
 You are now ready to add a social login feature to your app! "Provider" means the social media platform that provides the authentication service - Twitter, Facebook and Github would be common examples.
 
-- [ ] I have a personal or shared account on the provider platform.
-- [ ] I have created an Oauth App on the platform asscoiated with the above account, e.g. [Twitter](https://apps.twitter.com/), [Facebook](https://developers.facebook.com/docs/apps/register), [Github](https://github.com/settings/developers)
-- [ ] I have entered the callback url into the app settings. This is the same url as I have created perviously but absolute e.g. `http://localhost:3000/auth/facebook/callback`.
+- [x] I have a personal or shared account on the provider platform.
+- [x] I have created an Oauth App on the platform asscoiated with the above account, e.g. [Twitter](https://apps.twitter.com/), [Facebook](https://developers.facebook.com/docs/apps/register), [Github](https://github.com/settings/developers)
+- [x] I have entered the callback url into the app settings. This is the same url as I have created perviously but absolute e.g. `http://localhost:3000/auth/facebook/callback`.
 
 Note: The input form for the callback url and app configuration setup varies by provider and sometimes changes. It may be obvious or you may have to check the docs or web search for the provider's Oauth App registration particulars. When you deploy your app you will need to register **another app** that callsback to the production host.
 
 At the time of writing this [stackoverflow comment](http://stackoverflow.com/questions/37255315/cant-load-url-the-domain-of-this-url-isnt-included-in-the-apps-domains/37534760#37534760) was helpful for registering a facebook OAuth app.
 
-- [ ] I have installed [dotenv](https://www.npmjs.com/package/dotenv) and saved it to my `package.json`
-- [ ] I have created a `.env` file in the root directory of my project.
-- [ ] I have added the keys and secrets from my Oauth app to my `.env` file
-- [ ] I have required `dotenv` into the top of my server file and called `dotenv.config()`
-- [ ] I have required the Provider Strategy into my `passport.js` file
-- [ ] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/auth/facebook` and `/auth/facebook/callback`.
-- [ ] I have written the logic in `passport.js` that connects the response from the Provider to our `users` table. 
+- [x] I have installed [dotenv](https://www.npmjs.com/package/dotenv) and saved it to my `package.json`
+- [x] I have created a `.env` file in the root directory of my project.
+- [x] I have added the keys and secrets from my Oauth app to my `.env` file
+- [x] I have required `dotenv` into the top of my server file and called `dotenv.config()`
+- [x] I have required the Provider Strategy into my `passport.js` file
+- [x] I have implemented the authentication and authentication success and failure redirect logic above using the [passport.authenticate()](http://passportjs.org/docs/authenticate) middleware on `/auth/facebook` and `/auth/facebook/callback`.
+- [x] I have written the logic in `passport.js` that connects the response from the Provider to our `users` table. 
 
 ### Example passport configuration
 
