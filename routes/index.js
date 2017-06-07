@@ -4,10 +4,6 @@ var passport = require('passport')
 var func = require('../functions')
 var db = require('../db')
 
-function specialLogger (req, res, next) {
-  console.log('you hit sign up')
-  next()
-}
 
 function ensureAuthenticated (req, res, next) {
   if (req.isAuthenticated()) {
@@ -62,6 +58,8 @@ router.get('/logout', function (req,res) {
 })
 
 router.get('/resource', ensureAuthenticated, function (req, res) {
+    console.log("from router resource")
+    console.log(req.user)
     res.render('resource', {user: req.user})
 })
 
@@ -69,13 +67,12 @@ router.get('/not-authorised', function (req,res) {
   res.send('not authorised')
 })
 
-router.get('/auth/facebook', function (req,res) {
-  res.send('social login')
-})
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email']}))
 
-router.get('/auth/facebook/callback', function (req,res) {
-  res.send('callback from facebook')
-})
+router.get('/auth/facebook/callback',  passport.authenticate('facebook', {
+            successRedirect : '/resource',
+            failureRedirect : '/'
+}));
 
 router.get('/transactions', ensureAuthenticated, function (req, res) {
   res.render('transactions')
